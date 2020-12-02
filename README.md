@@ -60,6 +60,30 @@ The excuted workflow is as following:
 ```
 
 
+The columns represents:
+```
+OUTPUT
+	Tab-delimited SNP calls with the following columns:
+	Chrom		chromosome name
+	Position	position (1-based)
+	Ref		reference allele at this position
+	Cons		Consensus genotype of sample in IUPAC format.
+	Reads1		reads supporting reference allele
+	Reads2		reads supporting variant allele
+	VarFreq		frequency of variant allele by read count
+	Strands1	strands on which reference allele was observed
+	Strands2	strands on which variant allele was observed
+	Qual1		average base quality of reference-supporting read bases
+	Qual2		average base quality of variant-supporting read bases
+	Pvalue		Significance of variant read count vs. expected baseline error
+	MapQual1	Average map quality of ref reads (only useful if in pileup)
+	MapQual2	Average map quality of var reads (only useful if in pileup)
+	Reads1Plus	Number of reference-supporting reads on + strand
+	Reads1Minus	Number of reference-supporting reads on - strand
+	Reads2Plus	Number of variant-supporting reads on + strand
+	Reads2Minus	Number of variant-supporting reads on - strand
+	VarAllele	Most frequent non-reference allele observed 
+```
 
 
 
