@@ -14,7 +14,7 @@ Easiest way to install everything is through [miniconda](https://docs.conda.io/e
 
 And the following to install the needed packages:
 ```
-conda install -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools fgbio snakemake pandas
+conda install -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools fgbio snakemake pandas varscan
 ```
 
 ## Steps ##

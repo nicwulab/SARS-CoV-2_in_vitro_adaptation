@@ -30,14 +30,15 @@ rule variant_calling_with_varscan:
         SNP_FILE
     
     shell:
-        'samtools mpileup --fasta-ref {params.REF_FA} '\
+        'samtools mpileup --excl-flags 2048 --excl-flags 256  '\
+        '--fasta-ref {params.REF_FA} '\
         '--max-depth 50000 --min-MQ 30 --min-BQ 30  {input} '\
         '| varscan pileup2cns '\
         ' --min-coverage 10 ' \
         ' --min-reads2 2 '\
         '--min-var-freq 0.01 '\
         '--min-freq-for-hom 0.75 '
-        '--p-value 0.05 ' \
+        '--p-value 0.05 --variants 1 ' \
         '> {output}'
 
 rule sort_bam_with_samtools:
