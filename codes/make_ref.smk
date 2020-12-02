@@ -1,4 +1,10 @@
+# only variable that should be changed
 REF_PATH = '/Users/wckdouglas/Desktop/sars/ref'
+
+
+
+#=======================================================
+REF_FA = REF_PATH + '/Bavtpat1_complete.fa'
 PRIMER_SEQUENCE = REF_PATH + '/primers.fa'
 PRIMER_COORDINATE = REF_PATH + '/primers.bed' 
 PRIMER_FILE = REF_PATH + '/primers.txt' #see fgbio http://fulcrumgenomics.github.io/fgbio/tools/latest/TrimPrimers.html
@@ -10,7 +16,7 @@ rule all:
 
 rule build_index:
     input:
-        PRIMER_SEQUENCE
+        REF_FA
 
     output:
         BT_INDEX

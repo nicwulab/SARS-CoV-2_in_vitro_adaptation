@@ -21,6 +21,7 @@ conda install -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools fgbio
 
 1. build reference:
     - go into  ```/code/``` folder
+    - set the ```REF_PATH``` variable in ```make_ref.smk``` file accordingly
     - do ```snakemake -s make_ref.smk```
 2. Download all fastq files into ```/data/``` folder
 3. Run analysis:
