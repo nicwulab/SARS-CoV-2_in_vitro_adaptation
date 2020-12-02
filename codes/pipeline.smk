@@ -30,8 +30,9 @@ rule variant_calling_with_varscan:
         SNP_FILE
     
     shell:
-        'samtools mpileup -f {params.REF_FA} {input} '\
-        '| varscan pileup2snp '\
+        'samtools mpileup --fasta-ref {params.REF_FA} '\
+        '--max-depth 50000 --min-MQ 30 --min-BQ 30  {input} '\
+        '| varscan pileup2cns '\
         ' --min-coverage 10 ' \
         ' --min-reads2 2 '\
         '--min-var-freq 0.01 '\
