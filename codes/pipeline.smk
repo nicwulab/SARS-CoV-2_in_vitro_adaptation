@@ -13,10 +13,31 @@ MERGED_FQ = RESULT_PATH + '/merged.fq.gz'
 BAM = RESULT_PATH + '/aligned.bam'
 TRIMMED_BAM = RESULT_PATH + '/trimmed.bam'
 SORTED_BAM = RESULT_PATH + '/sorted.bam'
+SNP_FILE = RESULT_PATH + '/variants.snp'
 
 rule all:
     input:
-        expand(SORTED_BAM, SAMPLENAME = SAMPLENAMES)
+        expand(SNP_FILE, SAMPLENAME = SAMPLENAMES)
+
+rule variant_calling:
+    input:
+        SORTED_BAM
+
+    params:
+        REF_FA = REF
+
+    output:
+        SNP_FILE
+    
+    shell:
+        'samtools mpileup -f {params.REF_FA} {input} '\
+        '| varscan pileup2snp '\
+        ' --min-coverage 10 ' \
+        ' --min-reads2 2 '\
+        '--min-var-freq 0.01 '\
+        '--min-freq-for-hom 0.75 '
+        '--p-values 99e-02 ' \
+        '> {output}'
 
 rule sort:
     input:

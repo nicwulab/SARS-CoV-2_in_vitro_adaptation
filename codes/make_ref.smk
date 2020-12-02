@@ -2,11 +2,22 @@ REF_PATH = '/Users/wckdouglas/Desktop/sars/ref'
 PRIMER_SEQUENCE = REF_PATH + '/primers.fa'
 PRIMER_COORDINATE = REF_PATH + '/primers.bed' 
 PRIMER_FILE = REF_PATH + '/primers.txt' #see fgbio http://fulcrumgenomics.github.io/fgbio/tools/latest/TrimPrimers.html
+BT_INDEX = PRIMER_SEQUENCE + '.1.bt2'
 
 rule all:
     input:
-        PRIMER_FILE
+        PRIMER_FILE, BT_INDEX
 
+rule build_index:
+    input:
+        PRIMER_SEQUENCE
+
+    output:
+        BT_INDEX
+    
+    shell:
+        'bowtie2-build {input} {input}'
+        
 
 rule make_primer:
     input:
