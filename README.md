@@ -49,14 +49,12 @@ The excuted workflow is as following:
 ```
 | Chrom       | Position | Ref | Cons | Reads1 | Reads2 | VarFreq | Strands1 | Strands2 | Qual1 | Qual2 | Pvalue | MapQual1 | MapQual2 | Reads1Plus | Reads1Minus | Reads2Plus | Reads2Minus | VarAllele |
 | ----------- | -------- | --- | ---- | ------ | ------ | ------- | -------- | -------- | ----- | ----- | ------ | -------- | -------- | ---------- | ----------- | ---------- | ----------- | --------- |
-| BavtPat1.fa |    2,619 | T   | Y    |     98 |      2 |    2.00 |        1 |        1 |    40 |    34 |   0.98 |     True |     True |         98 |           0 |          2 |           0 | C         |
-| BavtPat1.fa |    3,688 | C   | Y    |    795 |     79 |    9.04 |        2 |        1 |    70 |    72 |   0.98 |     True |     True |        794 |           1 |         79 |           0 | T         |
-| BavtPat1.fa |    3,813 | A   | M    |  1,003 |     22 |    2.15 |        2 |        1 |    38 |    37 |   0.98 |     True |     True |        325 |         678 |          0 |          22 | C         |
-| BavtPat1.fa |    4,603 | T   | Y    |     88 |      2 |    2.22 |        2 |        2 |    55 |    24 |   0.98 |     True |     True |         51 |          37 |          1 |           1 | C         |
-| BavtPat1.fa |    4,719 | C   | Y    |     41 |      2 |    4.55 |        2 |        1 |    70 |    51 |   0.98 |     True |     True |         40 |           1 |          2 |           0 | T         |
-| BavtPat1.fa |    4,720 | G   | K    |     41 |      2 |    4.55 |        1 |        1 |    72 |    60 |   0.98 |     True |     True |         41 |           0 |          2 |           0 | T         |
-| BavtPat1.fa |    4,728 | G   | S    |     45 |      2 |    4.17 |        2 |        1 |    72 |    40 |   0.98 |     True |     True |         44 |           1 |          2 |           0 | C         |
-| BavtPat1.fa |    4,730 | T   | W    |     45 |      2 |    3.92 |        2 |        1 |    72 |    62 |   0.98 |     True |     True |         43 |           2 |          2 |           0 | +C        |
+| BavtPat1.fa |    3,688 | C   | Y    |    795 |     79 |    9.04 |        2 |        1 |    70 |    72 | 0.000… |     True |     True |        794 |           1 |         79 |           0 | T         |
+| BavtPat1.fa |    3,813 | A   | M    |  1,003 |     22 |    2.15 |        2 |        1 |    38 |    37 | 0.000… |     True |     True |        325 |         678 |          0 |          22 | C         |
+| BavtPat1.fa |    5,854 | T   | K    |  7,363 |    122 |    1.62 |        2 |        1 |    35 |    21 | 0.000… |     True |     True |      7,334 |          29 |        122 |           0 | G         |
+| BavtPat1.fa |   10,086 | G   | R    |  7,289 |     87 |    1.17 |        2 |        1 |    35 |    21 | 0.000… |     True |     True |      7,199 |          90 |         87 |           0 | A         |
+| BavtPat1.fa |   14,120 | C   | Y    |    101 |      8 |    7.34 |        2 |        2 |    63 |    64 | 0.003… |     True |     True |         82 |          19 |          6 |           2 | T         |
+| BavtPat1.fa |   18,228 | T   | Y    |    238 |     58 |   19.59 |        2 |        1 |    41 |    19 | 0.000… |     True |     True |        214 |          24 |         58 |           0 | C         |
 ```
 
 

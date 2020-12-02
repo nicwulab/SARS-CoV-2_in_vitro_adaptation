@@ -36,7 +36,7 @@ rule variant_calling_with_varscan:
         ' --min-reads2 2 '\
         '--min-var-freq 0.01 '\
         '--min-freq-for-hom 0.75 '
-        '--p-values 99e-02 ' \
+        '--p-value 0.05 ' \
         '> {output}'
 
 rule sort_bam_with_samtools:
