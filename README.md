@@ -19,11 +19,15 @@ conda install -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools fgbio
 
 ## Steps ##
 
-1. Download all fastq files into ```/data/``` folder
-2. Go into ```/code/``` folder
+1. build reference:
+    - go into  ```/code/``` folder
+    - do ```snakemake -s make_ref.smk```
+2. Download all fastq files into ```/data/``` folder
+3. Run analysis:
+    - go into ```/code/``` folder
     - set the ```PROJECT_PATH``` variable in ```pipeline.smk``` file accordingly
     - do: ```snakemake -s pipeline.smk``` to excute the analysis
-3. For each sample, you will get the following files:
+4. For each sample, you will get the following files:
     ```
     results
     ├── P1_S1
