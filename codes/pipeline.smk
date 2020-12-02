@@ -19,7 +19,7 @@ rule all:
     input:
         expand(SNP_FILE, SAMPLENAME = SAMPLENAMES)
 
-rule variant_calling:
+rule variant_calling_with_varscan:
     input:
         SORTED_BAM
 
@@ -39,7 +39,7 @@ rule variant_calling:
         '--p-values 99e-02 ' \
         '> {output}'
 
-rule sort:
+rule sort_bam_with_samtools:
     input:
         TRIMMED_BAM
 
@@ -50,7 +50,7 @@ rule sort:
         'samtools sort {input} > {output};'\
         ' samtools index {output}'
 
-rule trim_primer:
+rule trim_primers_from_alignment_with_fgbio:
     input:
         BAM
 
@@ -69,7 +69,7 @@ rule trim_primer:
         '-r {params.REF_FA} '
 
 
-rule align:
+rule align_with_bowtie:
     input:
         TRIMMED_FQ
 
@@ -82,7 +82,7 @@ rule align:
     shell:
         'bowtie2 -x {params.REF} --interleaved {input} | samtools view -b  > {output}'
 
-rule trim_adapt:
+rule trim_adapter_with_cutadapt:
     input:
         FQ1 = R1,
         FQ2 = R2
