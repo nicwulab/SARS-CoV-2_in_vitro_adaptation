@@ -35,6 +35,9 @@ conda install -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools fgbio
     │   └── variants.snp
     ```
 
+The excuted workflow is as following:
+![workflow](https://github.com/wckdouglas/SARS_CoV2_mutation/blob/main/codes/pipeline.png)
+
 ## Result SNP file (variants.snp) ##
 
 ```
