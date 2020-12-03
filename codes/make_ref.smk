@@ -8,7 +8,7 @@ REF_FA = REF_PATH + '/Bavtpat1_complete.fa'
 PRIMER_SEQUENCE = REF_PATH + '/primers.fa'
 PRIMER_COORDINATE = REF_PATH + '/primers.bed' 
 PRIMER_FILE = REF_PATH + '/primers.txt' #see fgbio http://fulcrumgenomics.github.io/fgbio/tools/latest/TrimPrimers.html
-BT_INDEX = PRIMER_SEQUENCE + '.1.bt2'
+BT_INDEX = REF_FA + '.1.bt2'
 
 rule all:
     input:
