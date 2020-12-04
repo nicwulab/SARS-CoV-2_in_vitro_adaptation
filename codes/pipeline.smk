@@ -82,7 +82,10 @@ rule align_with_bowtie:
         BAM
 
     shell:
-        'bowtie2 -x {params.REF} --interleaved {input} | samtools view -b  > {output}'
+        'bowtie2 -x {params.REF} '\
+        '--no-discordant --dovetail --no-mixed --maxins 2000 ' \
+        '--interleaved {input} --mm '\
+        '| samtools view -b  > {output}'
 
 rule trim_adapter_with_cutadapt:
     input:
