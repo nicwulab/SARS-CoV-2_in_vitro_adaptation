@@ -7,6 +7,7 @@
 * [varscan](http://dkoboldt.github.io/varscan/)
 * [snakemake](https://snakemake.readthedocs.io/en/stable/)
 * [pandas](https://pandas.pydata.org/)
+* [bamutils](https://genome.sph.umich.edu/wiki/BamUtil:_trimBam)
 
 ## Installation ##
 
@@ -14,7 +15,8 @@ Easiest way to install everything is through [miniconda](https://docs.conda.io/e
 
 And the following to install the needed packages:
 ```
-conda install -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools fgbio snakemake pandas varscan
+conda install -c bioconda -c anaconda python=3.6 cutadapt 
+            bowtie2 samtools fgbio snakemake pandas varscan bamutils seqtk
 ```
 
 ## Steps ##

@@ -52,7 +52,7 @@ rule sort_bam_with_samtools:
         'samtools sort {input} > {output};'\
         ' samtools index {output}'
 
-rule trim_primers_from_alignment_with_fgbio:
+rule trim_primers_from_alignment_with_bamutils:
     input:
         BAM
 
@@ -64,11 +64,7 @@ rule trim_primers_from_alignment_with_fgbio:
         TRIMMED_BAM
 
     shell:
-        'fgbio TrimPrimers '\
-        '-i {input} ' \
-        '-o {output} '\
-        '-p {params.PRIMERS} '\
-        '-r {params.REF_FA} '
+        'bam trimbam {input} {output} -L 30 -R 0 --clip '
 
 
 rule align_with_bowtie:
@@ -82,7 +78,10 @@ rule align_with_bowtie:
         BAM
 
     shell:
-        'bowtie2 -x {params.REF} --interleaved {input} | samtools view -b  > {output}'
+        'bowtie2 -x {params.REF} '\
+        '--no-discordant --dovetail --no-mixed --maxins 2000 ' \
+        '--interleaved {input} --mm '\
+        '| samtools view -bF 4  > {output}'
 
 rule trim_adapter_with_cutadapt:
     input:
