@@ -64,7 +64,10 @@ rule trim_primers_from_alignment_with_bamutils:
         TRIMMED_BAM
 
     shell:
-        'bam trimbam {input} {output} -L 30 -R 0 --clip '
+        'bam trimbam {input} - -L 30 -R 0 --clip '\
+        '| samtools fixmate - - '\
+        '| samtools calmd -Q - {params.REF_FA} '\
+        '> {output} '
 
 
 rule align_with_bowtie:

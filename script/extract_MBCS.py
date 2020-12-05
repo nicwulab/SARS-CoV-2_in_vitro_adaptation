@@ -83,16 +83,16 @@ def write_freq(dict_freq, outfilename):
 	outfile.close()
 
 def main():
-	bamfiles = ['bam/sorted.bam'] 
+	bamfiles = ['sorted.bam'] 
 	outfilename = "results/MBCS_freq.tsv"
 	min_freq = 0.01
 	for bamfile in bamfiles:
-		MBCS_list = extract_MBCS(bamfile)
-		MBCS_high_freq = filter_MBCS_by_freq(MBCS_list, min_freq)
-		MBCS_list_high_freq = [translation(MBCS) for MBCS in MBCS_list if MBCS in MBCS_high_freq]
-		MBCS_dict_high_freq = Counter(MBCS_list_high_freq)
-		make_sequence_logo(MBCS_list_high_freq)
-		write_freq(MBCS_dict_high_freq, outfilename)
+            MBCS_list = extract_MBCS(bamfile)
+            MBCS_high_freq = filter_MBCS_by_freq(MBCS_list, min_freq)
+            MBCS_list_high_freq = [translation(MBCS) for MBCS in MBCS_list if MBCS in MBCS_high_freq]
+            MBCS_dict_high_freq = Counter(MBCS_list_high_freq)
+            make_sequence_logo(MBCS_list_high_freq)
+            write_freq(MBCS_dict_high_freq, outfilename)
 
 if __name__ == "__main__":
 	main()
