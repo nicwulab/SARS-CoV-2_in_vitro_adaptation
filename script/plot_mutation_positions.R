@@ -12,10 +12,10 @@ require(cowplot)
 plot_mut_freq_on_genome <- function(snp_table, graphname){
   colorscale  <- brewer.pal(8,"Accent")
   textsize <- 6
-  p <- ggplot(snp_table,aes(y='P1',x=Position,color=mut_type)) +
+  p <- ggplot(snp_table,aes(y=Sample,x=Position,color=mut_type)) +
          geom_point(aes(fill=mut_type,size=VarFreq),color='black',shape=21,stroke=0.3) +
          scale_size_continuous(range = c(0,3.5)) +
-         scale_fill_manual(values=alpha(colorscale, 0.8)) +
+         scale_fill_manual(values=alpha(colorscale, 0.5)) +
          theme_cowplot(12) +
          theme(axis.title=element_text(size=textsize,face="bold"),
                axis.text=element_text(size=textsize,face="bold"),
@@ -25,7 +25,7 @@ plot_mut_freq_on_genome <- function(snp_table, graphname){
                legend.text=element_text(size=textsize,face="bold"),
                legend.position='right') +
          labs(y=expression(""),x=expression(bold("genome position")))
-  ggsave(graphname, p, height=1.2, width=3.5)
+  ggsave(graphname, p, height=5, width=3.5)
   }
 
 classifying_mut_type <- function(Con){
@@ -44,8 +44,9 @@ format_varfreq <- function(VarFreq){
   return (as.numeric(str_replace(VarFreq, '%', ''))/100)
   }
 
-snp_table <- read_tsv('results/variants.snp') %>%
+snp_table <- read_tsv('results/all_variants.snp') %>%
                mutate(mut_type=mapply(classifying_mut_type, Cons)) %>%
                mutate(VarFreq=mapply(format_varfreq, VarFreq)) %>%
-               select(Position, Cons, mut_type, VarFreq)
+               mutate(Sample=factor(Sample, levels=unique(rev(Sample)))) %>%
+               select(Sample, Position, Cons, mut_type, VarFreq)
 plot_mut_freq_on_genome(snp_table, 'graph/mut_freq_genome.png')
