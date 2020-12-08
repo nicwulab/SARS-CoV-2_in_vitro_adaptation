@@ -9,10 +9,25 @@ PRIMER_SEQUENCE = REF_PATH + '/primers.fa'
 PRIMER_COORDINATE = REF_PATH + '/primers.bed' 
 PRIMER_FILE = REF_PATH + '/primers.txt' #see fgbio http://fulcrumgenomics.github.io/fgbio/tools/latest/TrimPrimers.html
 BT_INDEX = REF_FA + '.1.bt2'
+SNP_EFF_BIN = REF_PATH + 'data/Bavtpat1/snpEffectPredictor.bin'
 
 rule all:
     input:
-        PRIMER_FILE, BT_INDEX
+        PRIMER_FILE, BT_INDEX, SNP_EFF_BIN
+
+rule SNPEFF:
+    input:
+        FA = REF_PATH + '/data/genomes/Bavtpat1.fa',
+        GFF3 =  REF_PATH + '/data/Bavtpat1/genes.gff'
+
+    params:
+        datadir = REF_PATH
+    output:
+        SNP_EFF_BIN
+
+    shell:
+        'snpeff build -gff3 -c ./snpEff.config -datadir {params.datadir}/data Bavtpat1'
+        
 
 rule build_index:
     input:
@@ -64,7 +79,7 @@ rule map:
         PRIMER_COORDINATE
 
     shell:
-        'bowtie2 -N1 -L 9 -x ${REF} -f {input} '\
+        'bowtie2 -N1 -L 9 -x ${params.REF} -f {input} '\
         '| samtools view -b '\
         '| bedtools bamtobed -i - '\
         '> primers.bed'
