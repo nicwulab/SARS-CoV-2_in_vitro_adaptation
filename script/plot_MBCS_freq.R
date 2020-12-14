@@ -25,6 +25,20 @@ plot_freq <- function(freq_table, graphname){
   ggsave(graphname, p, height=1.5, width=1.5)
   }
 
-MBCS_freq_table <- read_tsv('results/MBCS_freq.tsv') %>%
-                     mutate(MBCS=factor(MBCS, levels=rev(MBCS)))
-plot_freq(MBCS_freq_table, "graph/MBCS_freq.png")
+renaming <- function(v){
+  if (v=='-----'){return ('deletion')}
+  else {return (v)}
+  }
+
+wrapper <- function(ID){
+  MBCS_freq_table <- read_tsv(paste('Cov2_fastq/P',ID,'_S',ID,'/MBCS_freq.tsv',sep='')) %>%
+                       mutate(MBCS=mapply(renaming, MBCS)) %>%
+                       mutate(MBCS=factor(MBCS, levels=rev(MBCS))) 
+  plot_freq(MBCS_freq_table, paste('graph/MBCS_freq_P',ID,'_S',ID,'.png',sep=''))
+  }
+
+for (ID in seq(1, 38)){
+  if (ID==6){next}
+  wrapper(ID)
+  }
+
