@@ -61,38 +61,42 @@ def filter_MBCS_by_freq(MBCS_list, min_freq):
 	MBCS_high_freq = [MBCS for MBCS in MBCS_dict.keys() if MBCS_dict[MBCS]/len(MBCS_list) > min_freq]
 	return (MBCS_high_freq)
 
-def make_sequence_logo(sequence_list):
-	height_per_row = .8
-	width_per_col = 1.5
-	num_cols = 4
-	num_rows = 1
-	seqlogo_matrix = logomaker.alignment_to_matrix(sequence_list)
-	seqlogo = logomaker.Logo(seqlogo_matrix, font_name="Arial", color_scheme="weblogo_protein", width=1)
-	seqlogo.style_spines(visible=False)
-	seqlogo.ax.set_xticks([])
-	seqlogo.ax.set_yticks([])
-	plt.savefig("graph/MBCS_seqlogo.png")
-	plt.close()
+def make_sequence_logo(sequence_list, figname):
+    height_per_row = .8
+    width_per_col = 1.5
+    num_cols = 4
+    num_rows = 1
+    seqlogo_matrix = logomaker.alignment_to_matrix(sequence_list)
+    seqlogo = logomaker.Logo(seqlogo_matrix, font_name="Arial", color_scheme="weblogo_protein", width=1)
+    seqlogo.style_spines(visible=False)
+    seqlogo.ax.set_xticks([])
+    seqlogo.ax.set_yticks([])
+    plt.savefig(figname)
+    plt.close()
+    print('Written %s' %figname, file = sys.stdout)
 
 def write_freq(dict_freq, outfilename):
-	outfile = open(outfilename,'w')
-	outfile.write("\t".join(['MBCS', 'freq'])+"\n")
-	for MBCS in sorted(dict_freq.keys(),key=lambda x:dict_freq[x]):
-		freq = "{0:.3g}".format(dict_freq[MBCS]/sum(dict_freq.values()))
-		outfile.write("\t".join(map(str,[MBCS, freq]))+"\n")
-	outfile.close()
+    outfile = open(outfilename,'w')
+    outfile.write("\t".join(['MBCS', 'freq'])+"\n")
+    for MBCS in sorted(dict_freq.keys(),key=lambda x:dict_freq[x]):
+            freq = "{0:.3g}".format(dict_freq[MBCS]/sum(dict_freq.values()))
+            outfile.write("\t".join(map(str,[MBCS, freq]))+"\n")
+    outfile.close()
+    print('Written %s' %outfilename,file = sys.stdout)
 
 def main():
-	bamfiles = ['bam/sorted.bam'] 
-	outfilename = "results/MBCS_freq.tsv"
-	min_freq = 0.01
-	for bamfile in bamfiles:
-		MBCS_list = extract_MBCS(bamfile)
-		MBCS_high_freq = filter_MBCS_by_freq(MBCS_list, min_freq)
-		MBCS_list_high_freq = [translation(MBCS) for MBCS in MBCS_list if MBCS in MBCS_high_freq]
-		MBCS_dict_high_freq = Counter(MBCS_list_high_freq)
-		make_sequence_logo(MBCS_list_high_freq)
-		write_freq(MBCS_dict_high_freq, outfilename)
+    if len(sys.argv) != 4:
+        sys.exit('[usage] python %s <bam file> <freq output filename> <seq logo filename>')
+    bamfile = sys.argv[1]
+    outfilename = sys.argv[2]
+    outfig = sys.argv[3]
+    min_freq = 0.01
+    MBCS_list = extract_MBCS(bamfile)
+    MBCS_high_freq = filter_MBCS_by_freq(MBCS_list, min_freq)
+    MBCS_list_high_freq = [translation(MBCS) for MBCS in MBCS_list if MBCS in MBCS_high_freq]
+    MBCS_dict_high_freq = Counter(MBCS_list_high_freq)
+    make_sequence_logo(MBCS_list_high_freq, outfig)
+    write_freq(MBCS_dict_high_freq, outfilename)
 
 if __name__ == "__main__":
 	main()

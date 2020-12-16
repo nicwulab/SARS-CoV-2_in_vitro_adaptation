@@ -14,10 +14,26 @@ BAM = RESULT_PATH + '/aligned.bam'
 TRIMMED_BAM = RESULT_PATH + '/trimmed.bam'
 SORTED_BAM = RESULT_PATH + '/sorted.bam'
 SNP_FILE = RESULT_PATH + '/variants.snp'
+SEQ_LOGO = RESULT_PATH + '/MBCS_seqlogo.png'
+FREQ_FILE = RESULT_PATH + '/MBCS_freq.tsv'
 
 rule all:
     input:
-        expand(SNP_FILE, SAMPLENAME = SAMPLENAMES)
+        expand(SNP_FILE, SAMPLENAME = SAMPLENAMES),
+        expand(SEQ_LOGO, SAMPLENAME = SAMPLENAMES),
+        expand(FREQ_FILE, SAMPLENAME = SAMPLENAMES),
+
+rule cal_frequency:
+    input:
+        SORTED_BAM
+
+    output:
+        SEQ_LOGO = SEQ_LOGO, 
+        FREQ_FILE = FREQ_FILE
+
+    shell:
+        'python extract_MBCS.py {input} {output.FREQ_FILE} {output.SEQ_LOGO}'
+
 
 rule variant_calling_with_varscan:
     input:
@@ -64,7 +80,10 @@ rule trim_primers_from_alignment_with_bamutils:
         TRIMMED_BAM
 
     shell:
-        'bam trimbam {input} {output} -L 30 -R 0 --clip '
+        'bam trimbam {input} - -L 30 -R 0 --clip '\
+        '| samtools fixmate - - '\
+        '| samtools calmd -Q - {params.REF_FA} '\
+        '> {output} '
 
 
 rule align_with_bowtie:
