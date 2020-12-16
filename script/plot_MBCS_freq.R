@@ -21,24 +21,17 @@ plot_freq <- function(freq_table, graphname){
 			   legend.title=element_blank(),
 			   legend.text=element_text(size=textsize,face="bold"),
 			   legend.position='right') +
+         scale_y_continuous(breaks=c(0,0.2,0.4,0.6,0.8,1.0), labels=c("0.0","0.2","0.4","0.6","0.8","1.0"), limits=c(0,1)) +
          labs(y=expression(bold("Frequency")),x=expression())
   ggsave(graphname, p, height=1.5, width=1.5)
   }
 
-renaming <- function(v){
-  if (v=='-----'){return ('deletion')}
-  else {return (v)}
+MBCS_levels <- c('RRARS','RRARG','RRAHS','LRARS','deletion')
+MBCS_freq_table <- read_tsv("results/all_MBCS_freq.tsv") %>%
+					 mutate(MBCS=factor(MBCS, levels=MBCS_levels)) 
+samples <- unique(MBCS_freq_table$sampleID)
+for (sample in samples){
+  sample_table <- MBCS_freq_table %>%
+                    filter(sampleID==sample)
+  plot_freq(sample_table, paste('graph/MBCS_freq_',sample,'.png',sep=''))
   }
-
-wrapper <- function(ID){
-  MBCS_freq_table <- read_tsv(paste('Cov2_fastq/P',ID,'_S',ID,'/MBCS_freq.tsv',sep='')) %>%
-                       mutate(MBCS=mapply(renaming, MBCS)) %>%
-                       mutate(MBCS=factor(MBCS, levels=rev(MBCS))) 
-  plot_freq(MBCS_freq_table, paste('graph/MBCS_freq_P',ID,'_S',ID,'.png',sep=''))
-  }
-
-for (ID in seq(1, 38)){
-  if (ID==6){next}
-  wrapper(ID)
-  }
-
