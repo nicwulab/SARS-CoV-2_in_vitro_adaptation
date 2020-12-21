@@ -19,9 +19,9 @@ library(crayon)
 CoVgenome <- data.frame(
  molecule = "",
  Genome = "",
- start = c(266,21563,26245,26523,28274),
- end = c(21555,25384,26472,27191,29533),
- gene = c("ORFab","Spike","E","M","N")
+ start = c(266,21563,25393,26245,26523,27202,27394,27894,28274,29558),
+ end = c(21555,25384,26220,26472,27191,27387,27759,28259,29533,29674),
+ gene = c("ORFab","Spike","ORF3a","E","M","ORF6","ORF7a","ORF8","N","ORF10")
 )
 
 classifying_mut_type <- function(Con){
@@ -75,8 +75,8 @@ genomeplot <- ggplot(CoVgenome,
 
 
 png("graph/SARS-CoV-2_mut_freq_genome.png",
-    width = 26, height = 30, units = "cm", res = 500)
-t <- ggarrange(genomeplot, p + font("xy.text", size = 13)+ font("x", size = 13), heights = c(0.1,0.9),
+    width = 27, height = 44, units = "cm", res = 500)
+t <- ggarrange(genomeplot, p + font("xy.text", size = 13)+ font("x", size = 13), heights = c(0.17,0.83),
                     ncol = 1, nrow = 2, align = "v")
 annotate_figure(t,
                 top = text_grob("Visualizing SARS-CoV-2 Genome", color = "black", face = "bold", size = 14),
