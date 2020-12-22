@@ -53,7 +53,7 @@ colorscale  <- brewer.pal(8,"Accent")
 textsize <- 13
 p <- ggplot(snp_table,aes(y=Sample,x=Position,color=mut_type)) +
   geom_point(aes(fill=mut_type,size=VarFreq),color='black',shape=21,stroke=0.3) +
-  scale_size_continuous(range = c(0,3.5)) +
+  scale_size_continuous(range = c(0,9.5)) +
   scale_fill_manual(values=alpha(colorscale, 0.5)) +
   theme_cowplot(20) +
   theme(axis.title=element_text(size=textsize,face="bold"),
@@ -71,18 +71,24 @@ genomeplot <- ggplot(CoVgenome,
   geom_gene_label(align = "centre") +
   facet_wrap(~ molecule, scales = "free", ncol = 1) +
   scale_fill_brewer(palette = "Set3")+theme_genes()+
-  theme(axis.text.x=element_text(size=13,face="bold"))
+  #theme_void() +
+  theme(plot.title=element_blank(),
+        axis.text.x=element_blank(),
+        #legend.key.size=unit(0.2,'in'),
+        #legend.position='top',
+        legend.title=element_blank()
+        )
 
 
 png("graph/SARS-CoV-2_mut_freq_genome.png",
     width = 27, height = 44, units = "cm", res = 500)
-t <- ggarrange(genomeplot, p + font("xy.text", size = 13)+ font("x", size = 13), heights = c(0.17,0.83),
+t <- ggarrange(genomeplot, p + font("xy.text", size = 13)+ font("x", size = 13), heights = c(0.27,0.73),
                     ncol = 1, nrow = 2, align = "v")
 annotate_figure(t,
-                top = text_grob("Visualizing SARS-CoV-2 Genome", color = "black", face = "bold", size = 14),
-                bottom = text_grob(" anything could be here ", color = "blue",
-                                   hjust = 1, x = 1, face = "italic", size = 10),
-                left = text_grob("anything", color = "green", rot = 90),
-                fig.lab = "Figure 1", fig.lab.face = "bold"
+                #top = text_grob("Visualizing SARS-CoV-2 Genome", color = "black", face = "bold", size = 14),
+                #bottom = text_grob(" anything could be here ", color = "blue",
+                #                   hjust = 1, x = 1, face = "italic", size = 10),
+                #left = text_grob("anything", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
                 )
 dev.off()
