@@ -71,7 +71,7 @@ rule plotDepth:
         p.set_titles(col_template = '{col_name}')
         sns.despine()
         p.set(xlabel = 'Read coverage (log)', ylabel = 'Genomic position')
-        fig.savefig(output.FIG, bbox_inches='tight')
+        p.savefig(output.FIG, bbox_inches='tight')
 
 
 
