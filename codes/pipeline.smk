@@ -31,7 +31,7 @@ COVERAGE_STAT = PROJECT_PATH + '/results/coverage_stat.csv'
 
 rule all:
     input:
-        expand(SNP_FILE, SAMPLENAME = SAMPLENAMES),
+#        expand(SNP_FILE, SAMPLENAME = SAMPLENAMES),
         expand(SEQ_LOGO, SAMPLENAME = SAMPLENAMES),
         expand(FREQ_FILE, SAMPLENAME = SAMPLENAMES),
         COVERAGE_PNG, COVERAGE_STAT
@@ -47,7 +47,7 @@ rule plotDepth:
     run:
         def read_bed(bed):
             return pd.read_csv(bed, names = ['chrom','start','end','read_coverage'], sep='\t') \
-                .assign(samplename = os.path.basename(bed).split('.')[0]) \
+                .assign(samplename = os.path.basename(os.path.dirname(bed))) \
                 .assign(log_cov = lambda d: d.read_coverage.transform(np.log))
         
         
