@@ -63,7 +63,7 @@ def main(token: str, outpath: str, folder_id: int = 129452943094):
 
     '''
     box = Box(token=token)
-    for sample in box.list_folder():
+    for sample in box.list_folder(folder_id):
         if sample['type'] == 'folder':
             for sample_file in box.list_folder(sample['id']):
                 if sample_file['name'] == 'trimmed.bam':
