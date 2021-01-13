@@ -2,15 +2,12 @@ import requests
 from tqdm import tqdm
 import defopt
 
-TOKEN='koDT1eUsVlgzymO6ZwqMh7ARpx4FfrKN'
-
-
 
 class Box:
     def __init__(self, token=''):
         self.TOLEN = token
         self.baseurl = 'https://api.box.com/2.0'
-        self.headers = {'Authorization': 'Bearer %s' %TOKEN}
+        self.headers = {'Authorization': 'Bearer %s' %token}
 
     def list_folder(self, folder_id):
         '''
