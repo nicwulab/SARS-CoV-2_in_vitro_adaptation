@@ -27,6 +27,8 @@ Before running the analysis, do:
 conda activate SARS
 ```
 
+This requires doing ```conda init``` first.
+
 ## Steps ##
 
 1. build reference:
