@@ -3,11 +3,13 @@
 * [cutadapt](https://cutadapt.readthedocs.io/en/stable/)
 * [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 * [samtools](http://www.htslib.org/)
-* [fgbio](https://github.com/fulcrumgenomics/fgbio)
 * [varscan](http://dkoboldt.github.io/varscan/)
 * [snakemake](https://snakemake.readthedocs.io/en/stable/)
+* [bamutil](https://genome.sph.umich.edu/wiki/BamUtil:_trimBam)
+* [mosdepth](https://github.com/brentp/mosdepth)
 * [pandas](https://pandas.pydata.org/)
-* [bamutils](https://genome.sph.umich.edu/wiki/BamUtil:_trimBam)
+* [matplotlib](https://matplotlib.org/)
+* [seaborn](https://seaborn.pydata.org/)
 
 ## Installation ##
 
@@ -15,8 +17,14 @@ Easiest way to install everything is through [miniconda](https://docs.conda.io/e
 
 And the following to install the needed packages:
 ```
-conda install -c bioconda -c anaconda python=3.6 cutadapt 
-            bowtie2 samtools fgbio snakemake pandas varscan bamutils seqtk
+conda create -n SARS -c bioconda -c anaconda python=3.6 cutadapt  \
+            bowtie2 samtools snakemake pandas varscan bamutil seqtk   \
+            mosdepth matplotlib pandas 
+```
+
+Before running the analysis, do:
+```
+conda activate SARS
 ```
 
 ## Steps ##
