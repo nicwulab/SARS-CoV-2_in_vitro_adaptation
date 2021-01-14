@@ -5,7 +5,6 @@ import defopt
 
 class Box:
     def __init__(self, token=''):
-        self.TOLEN = token
         self.baseurl = 'https://api.box.com/2.0'
         self.headers = {'Authorization': 'Bearer %s' %token}
 
