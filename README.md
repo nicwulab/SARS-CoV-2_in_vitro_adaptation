@@ -19,7 +19,7 @@ And the following to install the needed packages:
 ```
 conda create -n SARS -c bioconda -c anaconda python=3.6 cutadapt  \
             bowtie2 samtools snakemake pandas varscan bamutil seqtk   \
-            mosdepth matplotlib pandas pysam logomaker
+            mosdepth matplotlib pandas pysam logomaker seaborn
 ```
 
 Before running the analysis, do:
