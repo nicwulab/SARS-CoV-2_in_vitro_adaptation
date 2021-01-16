@@ -38,7 +38,7 @@ def main(mosdepth_bed_file: str, figure: str):
     p.savefig(figre, bbox_inches='tight')
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 3:
         sys.exit('[usage] python %s <mosdepth bed file> <figurename> ' %sys.argv[0])
     main(sus/agrv[1])
 
