@@ -26,6 +26,7 @@ DEPTH_FILE = RESULT_PATH + '/coverage.per-base.bed.gz'
 SNP_FILE = RESULT_PATH + '/variants.snp'
 SEQ_LOGO = RESULT_PATH + '/MBCS_seqlogo.png'
 FREQ_FILE = RESULT_PATH + '/MBCS_freq.tsv'
+COVERAGE_PNG_PER_SAMPLE = RESULT_PATH + '/coverage.pdf'
 COVERAGE_PNG = PROJECT_PATH + '/results/coverage.png'
 COVERAGE_STAT = PROJECT_PATH + '/results/coverage_stat.csv'
 
@@ -34,7 +35,18 @@ rule all:
 #        expand(SNP_FILE, SAMPLENAME = SAMPLENAMES),
         expand(SEQ_LOGO, SAMPLENAME = SAMPLENAMES),
         expand(FREQ_FILE, SAMPLENAME = SAMPLENAMES),
+        expand(COVERAGE_PNG_PER_SAMPLE, SAMPLENAME = SAMPLENAMES),
         COVERAGE_PNG, COVERAGE_STAT
+
+rule plotDepth_per_sample:
+    input:
+        DEPTH_FILE
+    
+    output:
+        COVERAGE_PNG_PER_SAMPLE
+    
+    shell:
+        'python coverage_plot.py {input} {output}'
 
 rule plotDepth:
     input:
