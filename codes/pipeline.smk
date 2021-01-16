@@ -32,7 +32,7 @@ COVERAGE_STAT = PROJECT_PATH + '/results/coverage_stat.csv'
 
 rule all:
     input:
-#        expand(SNP_FILE, SAMPLENAME = SAMPLENAMES),
+        expand(SNP_FILE, SAMPLENAME = SAMPLENAMES),
         expand(SEQ_LOGO, SAMPLENAME = SAMPLENAMES),
         expand(FREQ_FILE, SAMPLENAME = SAMPLENAMES),
         expand(COVERAGE_PNG_PER_SAMPLE, SAMPLENAME = SAMPLENAMES),
