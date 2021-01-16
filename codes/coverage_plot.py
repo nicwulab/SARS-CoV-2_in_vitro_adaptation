@@ -9,6 +9,9 @@ from matplotlib import use as mpl_use
 mpl_use('agg')
 import matplotlib.pyplot as plt
 import numpy as np
+import logging
+logging.basicConfig(level = logging.INFO)
+logger = logging.getLogger('Coverage')
 plt.rc('axes', labelsize=15)
 plt.rc('xtick', labelsize=15)
 plt.rc('ytick', labelsize=15)
@@ -28,17 +31,19 @@ def main(mosdepth_bed_file: str, figure: str):
     :param figure: output figure name
     '''
     df = read_bed(mosdepth_bed_file)
+    logger.info('Reading %s' %mosdepth_bed_file)
 
     #make figure
     p = sns.FacetGrid(data = df, col_wrap = 1, col = 'samplename')
     p.map(plt.plot, 'end', 'log_cov')
     p.set_titles(col_template = '{col_name}')
     sns.despine()
-    p.set(xlabel = 'Read coverage (log)', ylabel = 'Genomic position')
-    p.savefig(figre, bbox_inches='tight')
+    p.set(ylabel = 'Read coverage (log)', xlabel = 'Genomic position')
+    p.savefig(figure, bbox_inches='tight')
+    logger.info('Plotted %s' %figure)
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
         sys.exit('[usage] python %s <mosdepth bed file> <figurename> ' %sys.argv[0])
-    main(sus/agrv[1])
+    main(sys.argv[1], sys.argv[2])
 
