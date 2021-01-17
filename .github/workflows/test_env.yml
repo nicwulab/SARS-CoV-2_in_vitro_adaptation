@@ -1,4 +1,4 @@
-name: test_setup
+name: test_env
 
 on:
   push:
