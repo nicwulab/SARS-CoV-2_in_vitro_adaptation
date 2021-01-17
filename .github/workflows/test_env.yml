@@ -35,8 +35,4 @@ jobs:
       - name: Install dependencies into virtural environment
         run: |
           conda install -c conda-forge mamba
-          mamba create  -n SARS -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools snakemake pandas varscan bamutil seqtk mosdepth matplotlib pandas pysam logomaker seaborn
-
-      - name: Activate environment
-        run: |
-          conda activate SARS
+          mamba install -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools snakemake pandas varscan bamutil seqtk mosdepth matplotlib pandas pysam logomaker seaborn
