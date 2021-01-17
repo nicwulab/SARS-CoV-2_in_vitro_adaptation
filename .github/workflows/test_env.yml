@@ -1,0 +1,46 @@
+name: test_setup
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: miniconda build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: test-environment
+          python-version: 3.6
+          channels: bioconda,default,anaconda
+          allow-softlinks: true
+          channel-priority: 'flexible'
+          show-channel-urls: true
+          use-only-tar-bz2: true
+          auto-update-conda: true
+
+      - name: setup conda
+        run: |
+          conda config --set always_yes yes --set changeps1 no
+          conda info -a
+          conda list
+          conda config --show-sources
+          conda config --show
+
+
+      - name: Install dependencies into virtural environment
+        run: |
+          conda install -c conda-forge mamba
+          mamba create  -n SARS -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools snakemake pandas varscan bamutil seqtk mosdepth matplotlib pandas pysam logomaker seaborn
+
+      - name: Activate environment
+        run: |
+          conda activate SARS
