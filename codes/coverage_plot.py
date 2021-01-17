@@ -11,8 +11,9 @@ mpl_use("agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import logging
-logging.basicConfig(level = logging.INFO)
-logger = logging.getLogger('SARS-CoV2 coverage')
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("SARS-CoV2 coverage")
 
 plt.rc("axes", labelsize=15)
 plt.rc("xtick", labelsize=15)
@@ -23,7 +24,7 @@ def read_bed(bed):
     """
     reading mosdepth output: {prefix}.per-base.bed.gz into pandas dataframe
     """
-    logger.info('Reading: %s' %bed)
+    logger.info("Reading: %s" % bed)
     return (
         pd.read_csv(bed, names=["chrom", "start", "end", "read_coverage"], sep="\t")
         .assign(samplename=os.path.basename(os.path.dirname(bed)))
@@ -47,10 +48,13 @@ def main(mosdepth_bed_file: str, figure: str):
     sns.despine()
     p.set(xlabel="Read coverage (log)", ylabel="Genomic position")
     p.savefig(figure, bbox_inches="tight")
-    logger.info('Plotted: %s' %figure)
+    logger.info("Plotted: %s" % figure)
 
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        sys.exit("[usage] python %s <mosdepth bed file: {prefix}.per-base.bed.gz> <figurename> " % sys.argv[0])
+        sys.exit(
+            "[usage] python %s <mosdepth bed file: {prefix}.per-base.bed.gz> <figurename> "
+            % sys.argv[0]
+        )
     main(sys.argv[1], sys.argv[2])
