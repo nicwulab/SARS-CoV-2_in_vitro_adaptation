@@ -1,10 +1,6 @@
 name: test_env
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: push
 
 jobs:
   build:
