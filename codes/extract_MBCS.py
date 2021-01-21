@@ -72,7 +72,6 @@ def make_sequence_logo(sequence_list, figname):
     seqlogo.ax.set_xticks([])
     seqlogo.ax.set_yticks([])
     plt.savefig(figname)
-    plt.close()
     print('Written %s' %figname, file = sys.stdout)
 
 def write_freq(dict_freq, outfilename):
