@@ -56,6 +56,15 @@ def extract_MBCS(bamfile):
 			MBCS_list.append(MBCS)
 	return MBCS_list
 
+def translate_MBCS(MBCS_list):
+	MBCS_pep_list = []
+	for MBCS in MBCS_list:
+		try:
+			MBCS_pep_list.append(translation(MBCS))
+		except:
+			continue
+	return(MBCS_pep_list)
+
 def filter_MBCS_by_freq(MBCS_list, min_freq):
 	MBCS_dict = Counter(MBCS_list)
 	MBCS_high_freq = [MBCS for MBCS in MBCS_dict.keys() if MBCS_dict[MBCS]/len(MBCS_list) > min_freq]
@@ -91,8 +100,9 @@ def main():
     outfig = sys.argv[3]
     min_freq = 0.01
     MBCS_list = extract_MBCS(bamfile)
-    MBCS_high_freq = filter_MBCS_by_freq(MBCS_list, min_freq)
-    MBCS_list_high_freq = [translation(MBCS) for MBCS in MBCS_list if MBCS in MBCS_high_freq]
+    MBCS_pep_list = translate_MBCS(MBCS_list)
+    MBCS_high_freq = filter_MBCS_by_freq(MBCS_pep_list, min_freq)
+    MBCS_list_high_freq = [MBCS for MBCS in MBCS_pep_list if MBCS in MBCS_high_freq]
     MBCS_dict_high_freq = Counter(MBCS_list_high_freq)
     make_sequence_logo(MBCS_list_high_freq, outfig)
     write_freq(MBCS_dict_high_freq, outfilename)
