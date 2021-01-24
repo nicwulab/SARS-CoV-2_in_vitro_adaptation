@@ -1,3 +1,8 @@
+# SARS-CoV-2 cell culture-adaptive mutations #
+
+This is the code repository for the manuscript [Human airway cells prevent SARS-CoV-2 multibasic cleavage site cell culture adaptation
+](https://www.biorxiv.org/content/10.1101/2021.01.22.427802v1).
+
 # Dependencies #
 
 * [cutadapt](https://cutadapt.readthedocs.io/en/stable/)
