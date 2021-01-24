@@ -35,4 +35,12 @@ jobs:
       - name: Install dependencies into virtural environment
         run: |
           conda install -c conda-forge mamba
-          mamba install -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools snakemake pandas varscan bamutil seqtk mosdepth matplotlib pandas pysam logomaker seaborn
+          mamba install -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools snakemake pandas varscan bamutil seqtk mosdepth matplotlib pandas pysam logomaker seaborn pytest
+
+      - name: Prep test data 
+        run: |
+          for SAM in test/data/*sam; do BAM=${SAM%.sam}.bam; samtools view -b $SAM > $BAM; echo made $BAM; samtools index $BAM; echo indexed $BAM ; done
+
+      - name: Test MBCS
+        run: |
+          pytest
