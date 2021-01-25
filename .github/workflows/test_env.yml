@@ -47,6 +47,11 @@ jobs:
         run: |
           pytest
 
+      - name: index bowtie2
+        run: |
+          cd ref
+          bowtie2-build Bavtpat1_complete.fa Bavtpat1_complete.fa
+
       - name: Test pipeline
         run: |
           cd codes
