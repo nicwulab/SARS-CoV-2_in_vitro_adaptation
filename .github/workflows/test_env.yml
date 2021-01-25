@@ -41,7 +41,7 @@ jobs:
       - name: Prep test data 
         run: |
           for SAM in test/data/*sam; do BAM=${SAM%.sam}.bam; samtools view -b $SAM > $BAM; echo made $BAM; samtools index $BAM; echo indexed $BAM ; done
-          for FQ in data/*fastq; do cat $FQ | zcat > ${FQ}.gz; done
+          for FQ in data/*fastq; do cat $FQ | gzip > ${FQ}.gz; done
 
       - name: Test MBCS
         run: |
