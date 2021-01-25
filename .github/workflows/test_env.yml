@@ -1,10 +1,10 @@
-name: test_env
+name: test pipeline
 
 on: push
 
 jobs:
   build:
-    name: miniconda build
+    name: pipeline test
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -35,4 +35,24 @@ jobs:
       - name: Install dependencies into virtural environment
         run: |
           conda install -c conda-forge mamba
-          mamba install -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools snakemake pandas varscan bamutil seqtk mosdepth matplotlib pandas pysam logomaker seaborn
+          mamba install -c bioconda -c anaconda python=3.6 cutadapt bowtie2 samtools snakemake pandas varscan bamutil seqtk mosdepth matplotlib pandas logomaker seaborn pytest
+          pip install pysam
+
+      - name: Prep test data 
+        run: |
+          for SAM in test/data/*sam; do BAM=${SAM%.sam}.bam; samtools view -b $SAM > $BAM; echo made $BAM; samtools index $BAM; echo indexed $BAM ; done
+          for FQ in data/*fastq; do cat $FQ | gzip > ${FQ}.gz; done
+
+      - name: Test MBCS
+        run: |
+          pytest
+
+      - name: index bowtie2
+        run: |
+          cd ref
+          bowtie2-build Bavtpat1_complete.fa Bavtpat1_complete.fa
+
+      - name: Test pipeline
+        run: |
+          cd codes
+          snakemake -s pipeline.smk -p -j 1

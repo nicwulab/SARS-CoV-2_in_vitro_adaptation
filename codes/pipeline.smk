@@ -1,5 +1,6 @@
 # only variable needed to change
-PROJECT_PATH='/Users/wckdouglas/Desktop/sars'
+import os
+PROJECT_PATH = os.path.abspath('../')
 
 import pandas as pd
 import seaborn as sns
