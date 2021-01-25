@@ -1,10 +1,10 @@
-name: test_env
+name: test pipeline
 
 on: push
 
 jobs:
   build:
-    name: miniconda build
+    name: pipeline test
     runs-on: ubuntu-latest
     defaults:
       run:
