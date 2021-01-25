@@ -1,5 +1,7 @@
 # SARS-CoV-2 cell culture-adaptive mutations #
 
+![test pipeline](https://github.com/nicwulab/SARS-CoV-2_in_vitro_adaptation/workflows/test%20pipeline/badge.svg)
+
 This is the code repository for the manuscript [Human airway cells prevent SARS-CoV-2 multibasic cleavage site cell culture adaptation
 ](https://www.biorxiv.org/content/10.1101/2021.01.22.427802v1).
 
