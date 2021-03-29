@@ -26,7 +26,6 @@ cffi=1.14.4=py36hfe0777f_1
 chardet=4.0.0=py36hecd8cb5_1003
 coincbc=2.10.5=h9fab268_1
 configargparse=1.2.3=pyh9f0ad1d_0
-cryptography=3.3.1=py36hd858a44_1
 cutadapt=3.2=py36he651532_0
 cycler=0.10.0=py36_0
 dataclasses=0.7=py36_0
@@ -69,7 +68,6 @@ gtk2=2.24.33=h55c0dba_0
 gts=0.7.6=hbf8be60_2
 harfbuzz=2.7.4=hf28d55f_0
 htslib=1.11=h422799e_1
-httplib2=0.18.1=pyh9f0ad1d_0
 icu=68.1=h74dc148_0
 idna=2.10=pyh9f0ad1d_0
 imagemagick=7.0.10_28=pl5262h1b3d56a_4
@@ -77,7 +75,6 @@ importlib-metadata=3.4.0=py36h79c6626_0
 importlib_metadata=3.4.0=hd8ed1ab_0
 ipython_genutils=0.2.0=py36_0
 jbig=2.1=h0b31af3_2002
-jinja2=2.11.2=pyh9f0ad1d_0
 jmespath=0.10.0=pyh9f0ad1d_0
 jpeg=9d=hbcb3906_0
 jsonschema=3.2.0=py36_1
