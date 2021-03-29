@@ -135,7 +135,6 @@ patsy=0.5.1=py36_0
 pcre=8.44=hb1e8313_0
 perl=5.26.2=hbcb3906_1008
 pigz=2.4=ha441bb4_0
-pillow=8.1.0=py36hc04f27d_1
 pip=20.3.3=py36hecd8cb5_0
 pixman=0.40.0=hbcb3906_0
 pkg-config=0.29.2=hb849cc2_1008
@@ -188,7 +187,6 @@ tornado=6.1=py36h20b66c6_1
 traitlets=4.3.3=py36h9f0ad1d_1
 typing_extensions=3.7.4.3=py_0
 uritemplate=3.0.1=py_0
-urllib3=1.26.2=pyhd8ed1ab_0
 varscan=2.4.4=0
 wcwidth=0.2.5=pyh9f0ad1d_2
 wheel=0.36.2=pyhd3eb1b0_0
