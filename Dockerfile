@@ -9,27 +9,27 @@ RUN wget \
     https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
     && mkdir /root/.conda \
     && bash Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh 
-RUN conda --version
+    && rm -f Miniconda3-latest-Linux-x86_64.sh;
+RUN conda --version;
 
-RUN conda config --set always_yes yes --set changeps1 no;\
-    conda info -a;\
-    conda list;\
-    conda config --show-sources;\
-    conda config --show;\
-    conda config --add channels bioconda;\
-    conda config --add channels default;\
-    conda config --add channels anaconda; \
-    conda config --add channels conda-forge
+RUN conda config --set always_yes yes --set changeps1 no &&\
+    conda info -a &&\
+    conda list && \
+    conda config --show-sources && \
+    conda config --show && \
+    conda config --add channels bioconda && \
+    conda config --add channels default && \
+    conda config --add channels anaconda && \
+    conda config --add channels conda-forge;
 
 
-RUN  conda install -c conda-forge mamba; \
-     mamba install -c bioconda -c anaconda python=3.6 \
+RUN  conda install -c conda-forge mamba  
+RUN mamba install -c bioconda -c anaconda python=3.6 \
         cutadapt bowtie2  \
         samtools snakemake pandas \
         varscan bamutil seqtk \
         mosdepth matplotlib \
-        logomaker seaborn pytest; \
+        logomaker seaborn pytest && \
      pip install pysam; 
 
 
