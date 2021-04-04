@@ -12,6 +12,7 @@ plt.rc('axes', labelsize=15)
 plt.rc('xtick', labelsize=15)
 plt.rc('ytick', labelsize=15)
 
+CODE_PATH = os.path.dirname(os.path.abspath(__file__))
 REF = PROJECT_PATH + '/ref/Bavtpat1_complete.fa'
 PRIMERS = PROJECT_PATH + '/ref/primers.txt'
 R1 = PROJECT_PATH + '/data/{SAMPLENAME}_L001_R1_001.fastq.gz'
@@ -43,11 +44,13 @@ rule plotDepth_per_sample:
     input:
         DEPTH_FILE
     
+    params:
+        CODE_PATH = CODE_PATH
     output:
         COVERAGE_PNG_PER_SAMPLE
     
     shell:
-        'python coverage_plot.py {input} {output}'
+        'python {params.CODE_PATH}/coverage_plot.py {input} {output}'
 
 rule plotDepth:
     input:
@@ -107,12 +110,14 @@ rule cal_frequency:
     input:
         SORTED_BAM
 
+    params:
+        CODE_PATH = CODE_PATH
     output:
         SEQ_LOGO = SEQ_LOGO, 
         FREQ_FILE = FREQ_FILE
 
     shell:
-        'python extract_MBCS.py {input} {output.FREQ_FILE} {output.SEQ_LOGO}'
+        'python {param.CODE_PATH}/extract_MBCS.py {input} {output.FREQ_FILE} {output.SEQ_LOGO}'
 
 
 rule variant_calling_with_varscan:
