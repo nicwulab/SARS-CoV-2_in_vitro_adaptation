@@ -117,7 +117,7 @@ rule cal_frequency:
         FREQ_FILE = FREQ_FILE
 
     shell:
-        'python {param.CODE_PATH}/extract_MBCS.py {input} {output.FREQ_FILE} {output.SEQ_LOGO}'
+        'python {params.CODE_PATH}/extract_MBCS.py {input} {output.FREQ_FILE} {output.SEQ_LOGO}'
 
 
 rule variant_calling_with_varscan:
