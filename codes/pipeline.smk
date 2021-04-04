@@ -12,7 +12,7 @@ plt.rc('axes', labelsize=15)
 plt.rc('xtick', labelsize=15)
 plt.rc('ytick', labelsize=15)
 
-CODE_PATH = os.path.dirname(os.path.abspath(__file__))
+CODE_PATH = PROJECT_PATH + '/codes'
 REF = PROJECT_PATH + '/ref/Bavtpat1_complete.fa'
 PRIMERS = PROJECT_PATH + '/ref/primers.txt'
 R1 = PROJECT_PATH + '/data/{SAMPLENAME}_L001_R1_001.fastq.gz'

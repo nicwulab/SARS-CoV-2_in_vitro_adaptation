@@ -15,8 +15,7 @@ RUN  conda install -c conda-forge mamba; \
         logomaker seaborn pytest; \
      pip install pysam; 
 
-COPY . /opt/pipeline
 
-CMD [ "snakemake", "-s" ,"/opt/pipeline/codes/pipeline.smk"]
+CMD [ "snakemake", "-s" ]
 
 
