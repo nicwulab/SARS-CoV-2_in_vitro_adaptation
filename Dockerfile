@@ -4,7 +4,7 @@ RUN conda config --set always_yes yes --set changeps1 no;\
     conda info -a;\
     conda list;\
     conda config --show-sources;\
-    conda config --show;
+    conda config --show;\
     conda config --add channels bioconda;\
     conda config --add channels default;\
     conda config --add channels anaconda;
