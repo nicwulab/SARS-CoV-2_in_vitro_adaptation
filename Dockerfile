@@ -7,7 +7,7 @@ RUN conda config --set always_yes yes --set changeps1 no;\
     conda config --show;
     conda config --add channels bioconda;\
     conda config --add channels default;\
-    conda config --add channels anaconda;\
+    conda config --add channels anaconda;
 
 RUN  conda install -c conda-forge mamba; \
      mamba install -c bioconda -c anaconda python=3.6 \
