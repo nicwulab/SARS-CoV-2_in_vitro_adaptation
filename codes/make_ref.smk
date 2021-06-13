@@ -1,5 +1,5 @@
 # only variable that should be changed
-REF_PATH = '/Users/wckdouglas/Desktop/sars/ref'
+REF_PATH = '/home/wu58/projects/github_issue/SARS-CoV-2_in_vitro_adaptation/ref'
 
 
 
